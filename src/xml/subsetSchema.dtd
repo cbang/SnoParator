@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+    TODO define vocabulary identification
+    PUBLIC ID: -//vendor//vocabulary//EN
+    SYSTEM ID: http://server/path/subsetSchema.dtd
+
+-->
+
+<!--
+    An example how to use this DTD from your XML document:
+
+    <?xml version="1.0"?>
+
+    <!DOCTYPE subset SYSTEM "subsetSchema.dtd">
+
+    <subset>
+    ...
+    </subset>
+-->
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT subset (normForms)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT normForms (normForm)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT normForm (fcsId|relationshipGroups)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT fcsId (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT relationshipGroups (relationshipGroup)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT relationshipGroup (relationships)*>
+<!ATTLIST relationshipGroup
+    explicit CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT relationships (relationship)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT relationship (attribute|destId)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT attribute (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT destId (#PCDATA)>

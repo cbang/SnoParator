@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="603.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="snoparator.HomeScreenController">
+   <children>
+      <SplitPane dividerPositions="0.2869198312236287" prefHeight="603.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <SplitPane dividerPositions="0.5" layoutX="34.0" layoutY="145.0" orientation="VERTICAL" prefHeight="601.0" prefWidth="228.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <Pane prefHeight="297.0" prefWidth="226.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Label layoutX="15.0" layoutY="15.0" text="SnoParator, V. 1.0" />
+                                    <Label layoutX="15.0" layoutY="40.0" text="Select two two input subsets to be compared:" />
+                                    <Label layoutX="15.0" layoutY="100.0" text="Subset A:" />
+                                    <Label layoutX="15.0" layoutY="185.0" text="Subset B:" />
+                                    <Button fx:id="btn_selectFileSubA" layoutX="15.0" layoutY="125.0" mnemonicParsing="false" onAction="#selectSubsetAPressed" text="Select File" />
+                                    <Label fx:id="label_filenameA" layoutX="15.0" layoutY="155.0" text="subset_a_filename" />
+                                    <Button fx:id="btn_selectFileSubB" layoutX="15.0" layoutY="210.0" mnemonicParsing="false" onAction="#selectSubsetBPressed" text="Select File" />
+                                    <Label fx:id="label_filenameB" layoutX="15.0" layoutY="240.0" text="subset_b_filename" />
+                                    <Label layoutX="15.0" layoutY="65.0" text="(Input files must be in .xml format)" />
+                                    <Separator layoutX="15.0" layoutY="31.0" prefHeight="3.0" prefWidth="94.0" />
+                                 </children>
+                              </Pane>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="327.0" prefWidth="267.0">
+                           <children>
+                              <Pane layoutX="107.0" layoutY="40.0" prefHeight="296.0" prefWidth="267.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Label layoutX="15.0" layoutY="15.0" text="Output specifications:" />
+                                 </children>
+                              </Pane>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <Pane layoutX="237.0" layoutY="239.0" prefHeight="601.0" prefWidth="673.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

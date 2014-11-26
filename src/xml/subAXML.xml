@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<subset>
+    <normForms> 
+        <normForm> 
+            <fcsId>301273002</fcsId> <!--Abnormal breath sounds-->
+            <relationshipGroups>
+                <relationshipGroup explicit="false">
+                    <relationships>
+                        <relationship>
+                            <attribute>363698007</attribute> <!--finding site-->
+                            <destId>82094008</destId> <!--lower respiratory tract structure -->
+                        </relationship>
+                        <relationship>
+                            <attribute>363714003</attribute> <!--interprets-->
+                            <destId>52653008</destId> <!--respiratory sounds-->
+                        </relationship>
+                        <relationship>
+                            <attribute>418775008</attribute> <!--method-->
+                            <destId>129436005</destId> <!--auscultation-->
+                        </relationship>
+                    </relationships>
+                </relationshipGroup>
+            </relationshipGroups>
+        </normForm>  
+        <normForm>
+            <fcsId>194828000</fcsId> <!--angina pectoris-->
+            <relationshipGroups>
+                <relationshipGroup explicit="false">
+                    <relationships>
+                        <relationship>
+                            <attribute>363705008</attribute> <!--has definitional manifestation-->
+                            <destId>22253000</destId> <!--pain-->
+                        </relationship>
+                    </relationships>
+                </relationshipGroup>
+                <relationshipGroup explicit="true">
+                    <relationships>
+                        <relationship>
+                            <attribute>116676008</attribute> <!--associated morphology-->
+                            <destId>449735000</destId> <!--structural change due to ischemia -->
+                        </relationship>
+                        <relationship>
+                            <attribute>363698007 </attribute> <!--finding site-->
+                            <destId>80891009</destId> <!--heart structure-->
+                        </relationship>
+                    </relationships>
+                </relationshipGroup>
+            </relationshipGroups>
+        </normForm>
+        <normForm>
+            <fcsId>62315008</fcsId> <!--Diarrhea-->
+            <relationshipGroups>
+                <relationshipGroup explicit="false">
+                    <relationships>
+                        <relationship>
+                            <attribute>363698007</attribute> <!--finding site-->
+                            <destId>122865005</destId> <!--gastrointestinal tract structure-->
+                        </relationship>
+                    </relationships>
+                </relationshipGroup>
+                <relationshipGroup explicit="true">
+                    <relationships>
+                        <relationship>
+                            <attribute>363713009</attribute> <!--has interpretation-->
+                            <destId>18307000</destId> <!--altered-->
+                        </relationship>
+                        <relationship>
+                            <attribute>363714003</attribute> <!--interprets-->
+                            <destId>39211005</destId> <!--bowel action-->
+                        </relationship>
+                    </relationships>
+                </relationshipGroup>
+            </relationshipGroups>
+        </normForm> 
+   </normForms>
+</subset>
+
