@@ -10,6 +10,7 @@ xsi:noNamespaceSchemaLocation="subset.xsd">
     <normForms> 
         <normForm> 
             <fcsId>301273002</fcsId> <!--Abnormal breath sounds-->
+            <fcsId>233300000</fcsId> <!--Abnormal breath sounds-->
             <relationshipGroups>
                 <relationshipGroup explicit="false">
                     <relationships>

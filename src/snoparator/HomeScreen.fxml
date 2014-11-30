@@ -37,6 +37,7 @@
                               <Pane layoutX="107.0" layoutY="40.0" prefHeight="296.0" prefWidth="267.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <Label layoutX="15.0" layoutY="15.0" text="Output specifications:" />
+                                    <Button fx:id="compareBtn" layoutX="21.0" layoutY="251.0" mnemonicParsing="false" onAction="#compareBtnClicked" text="Compare" />
                                  </children>
                               </Pane>
                            </children>
