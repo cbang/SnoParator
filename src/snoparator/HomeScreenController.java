@@ -49,6 +49,7 @@ public class HomeScreenController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         defaultDirectory = new File("C:/Users/Christian/Dropbox/Snomed-CT Msc. 1 semester/SnoParator/SnoParator/src/xml"); //Set of default directorty
         makeLabelsInvisible(); //All labels are made invisible
+        logic = new Logic(); //Instantiation of logic layer
     }
     
     ////////////////    Class methods   //////////////////
@@ -103,7 +104,10 @@ public class HomeScreenController implements Initializable {
     @FXML
     private Button compareBtn;
     
-    ////////////////    FXML handlers    //////////////////
+    @FXML
+    private Button btn_test;
+    
+    ////////////////    FXML handler methods    //////////////////
 
     @FXML
     void selectSubsetAPressed(ActionEvent event) {
@@ -151,8 +155,9 @@ public class HomeScreenController implements Initializable {
         
         if(subsetAXML!=null && subsetBXML!=null)
         {
-            //Instantiate logic class
-            logic = new Logic(subsetBXML,subsetBXML);
+            //Set the logic subset file variables
+            logic.setSubsetA(subsetAXML);
+            logic.setSubsetB(subsetBXML);
             //Get file paths for the subsets 
             String pathA = subsetAXML.getPath();
             String pathB = subsetBXML.getPath();
@@ -164,15 +169,16 @@ public class HomeScreenController implements Initializable {
                 String successfulParseSubsetA = logic.loadXMLData(pathA);
                 String successfulParseSubsetB = logic.loadXMLData(pathB);
                 
-                if(successfulParseSubsetA == "true" && successfulParseSubsetB == "true") //Files were read correctly and are now present in the logic instance subset buffer
+                if(successfulParseSubsetA == "true" && successfulParseSubsetB == "true") //Files were parsed correctly, and subsets are now present in the logic instance subset buffer
                 {
                     System.out.println("All is good! :-)");
+                    
                 }
-                else
+                else //If parsing of files were not successful
                 {
                     if(successfulParseSubsetA != "true" && successfulParseSubsetB != "true")
                     {
-                       showErrorDialog(successfulParseSubsetA+"\n"+successfulParseSubsetB); 
+                       showErrorDialog("Errors in both subsets:\n"+successfulParseSubsetA+"\n"+successfulParseSubsetB); 
                     }
                     if(successfulParseSubsetA != "true")
                     {
@@ -212,6 +218,11 @@ public class HomeScreenController implements Initializable {
                 }
             }    
         }
+    }
+    
+    @FXML
+    void testPressed(ActionEvent event) {
+        logic.getTransitiveClosure(31978002L); //Transitive closure result of fracture of Tibia
     }
     
 }

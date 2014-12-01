@@ -6,13 +6,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="603.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="snoparator.HomeScreenController">
+<AnchorPane id="AnchorPane" prefHeight="493.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="snoparator.HomeScreenController">
    <children>
       <SplitPane dividerPositions="0.2869198312236287" prefHeight="603.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <SplitPane dividerPositions="0.5" layoutX="34.0" layoutY="145.0" orientation="VERTICAL" prefHeight="601.0" prefWidth="228.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <SplitPane dividerPositions="0.6032719836400818" layoutX="34.0" layoutY="145.0" orientation="VERTICAL" prefHeight="601.0" prefWidth="228.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
@@ -37,7 +37,7 @@
                               <Pane layoutX="107.0" layoutY="40.0" prefHeight="296.0" prefWidth="267.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <Label layoutX="15.0" layoutY="15.0" text="Output specifications:" />
-                                    <Button fx:id="compareBtn" layoutX="21.0" layoutY="251.0" mnemonicParsing="false" onAction="#compareBtnClicked" text="Compare" />
+                                    <Button fx:id="compareBtn" layoutX="21.0" layoutY="152.0" mnemonicParsing="false" onAction="#compareBtnClicked" text="Compare" />
                                  </children>
                               </Pane>
                            </children>
@@ -48,7 +48,10 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <Pane layoutX="237.0" layoutY="239.0" prefHeight="601.0" prefWidth="673.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Pane layoutX="237.0" layoutY="239.0" prefHeight="601.0" prefWidth="673.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Button fx:id="btn_test" layoutX="26.0" layoutY="24.0" mnemonicParsing="false" onAction="#testPressed" prefHeight="125.0" prefWidth="242.0" text="TESTING IS FUN!" />
+                     </children></Pane>
                </children>
             </AnchorPane>
         </items>

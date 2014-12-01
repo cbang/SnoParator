@@ -27,12 +27,18 @@ public class Logic {
     private File subsetA;
     private File subsetB;
     private ArrayList<Subset> subsets;
+    private Data dataInstance;
+    
+    public Logic()
+    {
+        dataInstance = new Data();
+    }
 
     public Logic(File subsetA, File subsetB) {
         this.subsetA = subsetA;
         this.subsetB = subsetB;
         subsets = new ArrayList<Subset>();
-
+        dataInstance = new Data();
     }
     
     public String validateInputXML(String subsetPath)
@@ -95,7 +101,7 @@ public class Logic {
             //Instantiation of new SaxHandler handler instance for SAX Operation, which listens for the things 
             //we want to extract from the xml. We also pass a reference to the handler, so we can pass back 
             //information obtained (Subsets in object-model form) to this logic instance. This is done through
-            //the addSubset method
+            //the addSubset method below
             DefaultHandler handler  = new SaxHandler(this); 
             saxParser.parse(xmlInput, handler); //Parses the XML file, and adds subset to the logic instance subset-buffer
             successful = "true";
@@ -113,6 +119,40 @@ public class Logic {
     public void addSubset(Subset subset)
     {
         subsets.add(subset);
+    }
+    
+    public ArrayList<Relationship> getTransitiveClosure(Long sctID)
+    {
+        ArrayList<Relationship> result = dataInstance.getTransitiveClosure(sctID);
+        return result;
+    }
+
+    /**
+     * @return the subsetA
+     */
+    public File getSubsetA() {
+        return subsetA;
+    }
+
+    /**
+     * @param subsetA the subsetA to set
+     */
+    public void setSubsetA(File subsetA) {
+        this.subsetA = subsetA;
+    }
+
+    /**
+     * @return the subsetB
+     */
+    public File getSubsetB() {
+        return subsetB;
+    }
+
+    /**
+     * @param subsetB the subsetB to set
+     */
+    public void setSubsetB(File subsetB) {
+        this.subsetB = subsetB;
     }
 
 }
