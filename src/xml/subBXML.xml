@@ -47,7 +47,7 @@ xsi:noNamespaceSchemaLocation="subset.xsd">
                             <destId>449735000</destId> <!--structural change due to ischemia -->
                         </relationship>
                         <relationship>
-                            <attribute>363698007 </attribute> <!--finding site-->
+                            <attribute>363698007</attribute> <!--finding site-->
                             <destId>80891009</destId> <!--heart structure-->
                         </relationship>
                     </relationships>

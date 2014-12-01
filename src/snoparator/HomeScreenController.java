@@ -161,7 +161,29 @@ public class HomeScreenController implements Initializable {
             
             if(validation=="true") //Both files are validated successfully in accordance to the XSD, continue
             {
-                System.out.println(validation);
+                String successfulParseSubsetA = logic.loadXMLData(pathA);
+                String successfulParseSubsetB = logic.loadXMLData(pathB);
+                
+                if(successfulParseSubsetA == "true" && successfulParseSubsetB == "true") //Files were read correctly and are now present in the logic instance subset buffer
+                {
+                    System.out.println("All is good! :-)");
+                }
+                else
+                {
+                    if(successfulParseSubsetA != "true" && successfulParseSubsetB != "true")
+                    {
+                       showErrorDialog(successfulParseSubsetA+"\n"+successfulParseSubsetB); 
+                    }
+                    if(successfulParseSubsetA != "true")
+                    {
+                       showErrorDialog("Error in subset A:\n"+successfulParseSubsetA);
+                    }
+                    if(successfulParseSubsetB != "true")
+                    {
+                       showErrorDialog("Error in subset B:\n"+successfulParseSubsetB);
+                    } 
+                }
+                
             }
             else //Something went wrong in validation
             {

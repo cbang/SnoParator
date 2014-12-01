@@ -11,10 +11,10 @@ package snoparator;
  * @author Christian
  */
 public class Comparison {
-    private Expression expA;
-    private Expression expB;
+    private Normform expA;
+    private Normform expB;
     
-    public Comparison(Expression expA, Expression expB)
+    public Comparison(Normform expA, Normform expB)
     {
         this.expA = expA;
         this.expB = expB;
@@ -23,28 +23,28 @@ public class Comparison {
     /**
      * @return the expA
      */
-    public Expression getExpA() {
+    public Normform getExpA() {
         return expA;
     }
 
     /**
      * @param expA the expA to set
      */
-    public void setExpA(Expression expA) {
+    public void setExpA(Normform expA) {
         this.expA = expA;
     }
 
     /**
      * @return the expB
      */
-    public Expression getExpB() {
+    public Normform getExpB() {
         return expB;
     }
 
     /**
      * @param expB the expB to set
      */
-    public void setExpB(Expression expB) {
+    public void setExpB(Normform expB) {
         this.expB = expB;
     }
 }

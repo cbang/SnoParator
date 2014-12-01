@@ -8,11 +8,15 @@ package snoparator;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
 import javax.xml.XMLConstants;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
+import org.xml.sax.helpers.DefaultHandler;
 
 /**
  *
@@ -22,10 +26,12 @@ public class Logic {
 
     private File subsetA;
     private File subsetB;
+    private ArrayList<Subset> subsets;
 
     public Logic(File subsetA, File subsetB) {
         this.subsetA = subsetA;
         this.subsetB = subsetB;
+        subsets = new ArrayList<Subset>();
 
     }
     
@@ -77,9 +83,36 @@ public class Logic {
         return result;
     }
     
-    public void loadXMLData()
+    public String loadXMLData(String subsetPath)
     {
+        String successful = "";
+        String editedPathXML = subsetPath.replace("\\", "/");
+        SAXParserFactory factory = SAXParserFactory.newInstance();
+        try
+        {
+            SAXParser saxParser = factory.newSAXParser();
+            InputStream xmlInput = new FileInputStream(editedPathXML);
+            //Instantiation of new SaxHandler handler instance for SAX Operation, which listens for the things 
+            //we want to extract from the xml. We also pass a reference to the handler, so we can pass back 
+            //information obtained (Subsets in object-model form) to this logic instance. This is done through
+            //the addSubset method
+            DefaultHandler handler  = new SaxHandler(this); 
+            saxParser.parse(xmlInput, handler); //Parses the XML file, and adds subset to the logic instance subset-buffer
+            successful = "true";
+        }
         
+        catch(Exception ex)
+        {
+            System.out.println(ex.toString());
+            successful = ex.toString();
+        }
+        
+        return successful;
+    }
+    
+    public void addSubset(Subset subset)
+    {
+        subsets.add(subset);
     }
 
 }
