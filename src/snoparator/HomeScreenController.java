@@ -8,13 +8,11 @@ package snoparator;
 
 import dialogs.ErrorDialogController;
 import java.io.File;
-import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,7 +20,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -42,6 +39,8 @@ public class HomeScreenController implements Initializable {
     private Stage errorDialogStage;
     private Button errorDialogOkBtn;
     private Logic logic;
+    private Boolean fileChooserAOpen;
+    private Boolean fileChooserBOpen;
     
     ////////////////    Initialization of controller class    //////////////////
     
@@ -50,6 +49,8 @@ public class HomeScreenController implements Initializable {
         defaultDirectory = new File("C:/Users/Christian/Dropbox/Snomed-CT Msc. 1 semester/SnoParator/SnoParator/src/xml"); //Set of default directorty
         makeLabelsInvisible(); //All labels are made invisible
         logic = new Logic(); //Instantiation of logic layer
+        fileChooserAOpen = false;
+        fileChooserBOpen = false;
     }
     
     ////////////////    Class methods   //////////////////
@@ -85,8 +86,8 @@ public class HomeScreenController implements Initializable {
         {
             System.out.println(e);
         }
-    }         
-    
+    }
+        
     ////////////////    FXML attributes (layout components)    //////////////////
     
      @FXML
@@ -111,41 +112,63 @@ public class HomeScreenController implements Initializable {
 
     @FXML
     void selectSubsetAPressed(ActionEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilterXML = new FileChooser.ExtensionFilter("XML files (*.xml", "*.XML");
-        fileChooser.getExtensionFilters().addAll(extFilterXML); //Only allow xml files to be selected
-        fileChooser.setInitialDirectory(defaultDirectory);
-        subsetAXML = fileChooser.showOpenDialog(null);
         
-        if(subsetAXML != null)
+        if(fileChooserAOpen == false) //Only open filechooser if theres noone open
         {
-            label_filenameA.setText(subsetAXML.getName());
-            label_filenameA.setVisible(true);
+            FileChooser fileChooser = new FileChooser();
+            FileChooser.ExtensionFilter extFilterXML = new FileChooser.ExtensionFilter("XML files (*.xml", "*.XML");
+            fileChooser.getExtensionFilters().addAll(extFilterXML); //Only allow xml files to be selected
+            fileChooser.setInitialDirectory(defaultDirectory);
+            fileChooserAOpen = true;
+            subsetAXML = fileChooser.showOpenDialog(null);
+        
+            if(subsetAXML != null)
+            {
+                label_filenameA.setText(subsetAXML.getName());
+                label_filenameA.setVisible(true);
+                fileChooserAOpen = false;
+            }
+            else
+            {
+                System.out.println("Nothing is selected");
+                fileChooserAOpen = false;
+            } 
         }
         else
         {
-            System.out.println("Nothing is selected");
+            //Do nothing
         }
+        
     }
 
     @FXML
     void selectSubsetBPressed(ActionEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilterXML = new FileChooser.ExtensionFilter("XML files (*.xml", "*.XML");
-        fileChooser.getExtensionFilters().addAll(extFilterXML); //Only allow xml files to be selected
-        fileChooser.setInitialDirectory(defaultDirectory);
-        subsetBXML = fileChooser.showOpenDialog(null);
         
-        if(subsetBXML != null)
+        if(fileChooserBOpen == false) //Only open filechooser if theres noone open
         {
-            label_filenameB.setText(subsetBXML.getName());
-            label_filenameB.setVisible(true);
+            FileChooser fileChooser = new FileChooser();
+            FileChooser.ExtensionFilter extFilterXML = new FileChooser.ExtensionFilter("XML files (*.xml", "*.XML");
+            fileChooser.getExtensionFilters().addAll(extFilterXML); //Only allow xml files to be selected
+            fileChooser.setInitialDirectory(defaultDirectory);
+            fileChooserBOpen = true;
+            subsetBXML = fileChooser.showOpenDialog(null);
+            
+            if(subsetBXML != null)
+            {
+                label_filenameB.setText(subsetBXML.getName());
+                label_filenameB.setVisible(true);
+                fileChooserBOpen = false;                
+            }
+            else
+            {
+                System.out.println("Nothing is selected");
+                fileChooserBOpen = false; 
+            }
         }
         else
         {
-            System.out.println("Nothing is selected");
+           //Do nothing 
         }
-        
         
     }
     
@@ -171,7 +194,18 @@ public class HomeScreenController implements Initializable {
                 
                 if(successfulParseSubsetA == "true" && successfulParseSubsetB == "true") //Files were parsed correctly, and subsets are now present in the logic instance subset buffer
                 {
-                    System.out.println("All is good! :-)");
+                    System.out.println("All is good, we proceed with comparing the stuff");
+                    logic.compareSubsets();
+//                    try
+//                    {
+//                      logic.compareSubsets();  
+//                    }
+//                    catch(Exception ex)
+//                    {
+//                      StringWriter errors = new StringWriter();
+//                      ex.printStackTrace(new PrintWriter(errors));
+//                      System.out.println(ex.toString());
+//                    }
                     
                 }
                 else //If parsing of files were not successful

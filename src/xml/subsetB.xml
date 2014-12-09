@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<subset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="subset.xsd">
+    <normForms> 
+        <normForm> <!--Chonical Mental Disorder- FULL MATCH(1)-->
+            <fcsId>74732009</fcsId> <!-- mental disorder -->
+            <relationshipGroups>
+                <relationshipGroup explicit="false">
+                    <relationships>
+                        <relationship>
+                            <attribute>263502005</attribute> <!--Clinical course-->
+                            <destId>90734009</destId> <!--Chronic -->
+                        </relationship>
+                    </relationships>
+                </relationshipGroup>
+            </relationshipGroups>
+        </normForm>  
+        <normForm><!--(2)-->
+            <fcsId>74732009</fcsId> <!-- mental disorder --> 
+            <relationshipGroups>
+                <relationshipGroup explicit="false">
+                    <relationships>
+                        <relationship>
+                            <attribute>263502005</attribute> <!--Clinical course-->
+                            <destId>47501007</destId> <!--Chronic active -->
+                        </relationship>
+                    </relationships>
+                </relationshipGroup>
+            </relationshipGroups>
+        </normForm>
+        <normForm><!--(3)-->
+            <fcsId>74732009</fcsId> <!-- mental disorder --> 
+            <relationshipGroups>
+                <relationshipGroup explicit="false">
+                    <relationships>
+                        <relationship>
+                            <attribute>263502005</attribute> <!--Clinical course-->
+                            <destId>53120007</destId> <!--Arm -->
+                        </relationship>
+                    </relationships>
+                </relationshipGroup>
+            </relationshipGroups>
+        </normForm>
+        <normForm><!--(4)-->
+            <fcsId>74732009</fcsId> <!-- mental disorder --> 
+            <relationshipGroups>
+                <relationshipGroup explicit="false">
+                    <relationships>
+                        <relationship>
+                            <attribute>363698007</attribute> <!--Finding site-->
+                            <destId>90734009</destId> <!--Chronic -->
+                        </relationship>
+                    </relationships>
+                </relationshipGroup>
+            </relationshipGroups>
+        </normForm>
+        <normForm> <!--(5)-->
+            <fcsId>74732009</fcsId> <!-- mental disorder -->
+            <relationshipGroups>
+                <relationshipGroup explicit="false">
+                    <relationships>
+                        <relationship>
+                            <attribute>363698007</attribute> <!--Finding site-->
+                            <destId>47501007</destId> <!--Chronic active -->
+                        </relationship>
+                    </relationships>
+                </relationshipGroup>
+            </relationshipGroups>
+        </normForm>
+        <normForm> <!--(6)-->
+            <fcsId>74732009</fcsId> <!-- mental disorder -->
+            <relationshipGroups>
+                <relationshipGroup explicit="false">
+                    <relationships>
+                        <relationship>
+                            <attribute>363698007</attribute> <!--Finding site-->
+                            <destId>53120007</destId> <!--Arm -->
+                        </relationship>
+                    </relationships>
+                </relationshipGroup>
+            </relationshipGroups>
+        </normForm>
+        <normForm> <!--(7)-->
+            <fcsId>64572001</fcsId> <!-- Disease -->
+            <relationshipGroups>
+                <relationshipGroup explicit="false">
+                    <relationships>
+                        <relationship>
+                            <attribute>263502005</attribute> <!--Clinical course-->
+                            <destId>90734009</destId> <!--Chronic -->
+                        </relationship>
+                    </relationships>
+                </relationshipGroup>
+            </relationshipGroups>
+        </normForm>
+        <normForm> <!--(8)-->
+            <fcsId>64572001</fcsId> <!-- Disease -->
+            <relationshipGroups>
+                <relationshipGroup explicit="false">
+                    <relationships>
+                        <relationship>
+                            <attribute>263502005</attribute> <!--Clinical course-->
+                            <destId>47501007</destId> <!--Chronic active -->
+                        </relationship>
+                    </relationships>
+                </relationshipGroup>
+            </relationshipGroups>
+        </normForm>
+        <normForm> <!--(9)-->
+            <fcsId>64572001</fcsId> <!-- Disease -->
+            <relationshipGroups>
+                <relationshipGroup explicit="false">
+                    <relationships>
+                        <relationship>
+                            <attribute>263502005</attribute> <!--Clinical course-->
+                            <destId>53120007</destId> <!--Arm -->
+                        </relationship>
+                    </relationships>
+                </relationshipGroup>
+            </relationshipGroups>
+        </normForm>
+        <normForm> <!--(10)-->
+            <fcsId>64572001</fcsId> <!-- Disease -->
+            <relationshipGroups>
+                <relationshipGroup explicit="false">
+                    <relationships>
+                        <relationship>
+                            <attribute>363698007</attribute> <!--Finding site-->
+                            <destId>90734009</destId> <!--Chronic -->
+                        </relationship>
+                    </relationships>
+                </relationshipGroup>
+            </relationshipGroups>
+        </normForm>
+        <normForm> <!--(11)-->
+            <fcsId>64572001</fcsId> <!-- Disease -->
+            <relationshipGroups>
+                <relationshipGroup explicit="false">
+                    <relationships>
+                        <relationship>
+                            <attribute>363698007</attribute> <!--Finding site-->
+                            <destId>47501007</destId> <!--Chronic active -->
+                        </relationship>
+                    </relationships>
+                </relationshipGroup>
+            </relationshipGroups>
+        </normForm>
+        <normForm> <!--(12)-->
+            <fcsId>64572001</fcsId> <!-- Disease -->
+            <relationshipGroups>
+                <relationshipGroup explicit="false">
+                    <relationships>
+                        <relationship>
+                            <attribute>363698007</attribute> <!--Finding site-->
+                            <destId>53120007</destId> <!--Arm -->
+                        </relationship>
+                    </relationships>
+                </relationshipGroup>
+            </relationshipGroups>
+        </normForm>
+        <normForm> <!--(13)-->
+            <fcsId>71388002</fcsId> <!-- Procedure -->
+            <relationshipGroups>
+                <relationshipGroup explicit="false">
+                    <relationships>
+                        <relationship>
+                            <attribute>263502005</attribute> <!--Clinical course-->
+                            <destId>90734009</destId> <!--Chronic -->
+                        </relationship>
+                    </relationships>
+                </relationshipGroup>
+            </relationshipGroups>
+        </normForm>
+        <normForm> <!--(14)-->
+            <fcsId>71388002</fcsId> <!-- Procedure -->
+            <relationshipGroups>
+                <relationshipGroup explicit="false">
+                    <relationships>
+                        <relationship>
+                            <attribute>263502005</attribute> <!--Clinical course-->
+                            <destId>47501007</destId> <!--Chronic active -->
+                        </relationship>
+                    </relationships>
+                </relationshipGroup>
+            </relationshipGroups>
+        </normForm>
+        <normForm> <!--(15)-->
+            <fcsId>71388002</fcsId> <!-- Procedure -->
+            <relationshipGroups>
+                <relationshipGroup explicit="false">
+                    <relationships>
+                        <relationship>
+                            <attribute>263502005</attribute> <!--Clinical course-->
+                            <destId>53120007</destId> <!--Arm -->
+                        </relationship>
+                    </relationships>
+                </relationshipGroup>
+            </relationshipGroups>
+        </normForm>
+        <normForm> <!--(16)-->
+            <fcsId>71388002</fcsId> <!-- Procedure -->
+            <relationshipGroups>
+                <relationshipGroup explicit="false">
+                    <relationships>
+                        <relationship>
+                            <attribute>363698007</attribute> <!--Finding site-->
+                            <destId>90734009</destId> <!--Chronic -->
+                        </relationship>
+                    </relationships>
+                </relationshipGroup>
+            </relationshipGroups>
+        </normForm>
+        <normForm> <!--(17)-->
+            <fcsId>71388002</fcsId> <!-- Procedure -->
+            <relationshipGroups>
+                <relationshipGroup explicit="false">
+                    <relationships>
+                        <relationship>
+                            <attribute>363698007</attribute> <!--Finding site-->
+                            <destId>47501007</destId> <!--Chronic active -->
+                        </relationship>
+                    </relationships>
+                </relationshipGroup>
+            </relationshipGroups>
+        </normForm>
+        <normForm> <!--(17)-->
+            <fcsId>71388002</fcsId> <!-- Procedure -->
+            <relationshipGroups>
+                <relationshipGroup explicit="false">
+                    <relationships>
+                        <relationship>
+                            <attribute>363698007</attribute> <!--Finding site-->
+                            <destId>53120007</destId> <!--Arm -->
+                        </relationship>
+                    </relationships>
+                </relationshipGroup>
+            </relationshipGroups>
+        </normForm>
+    </normForms>
+</subset>
