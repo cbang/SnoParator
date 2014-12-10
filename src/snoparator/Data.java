@@ -80,4 +80,72 @@ public class Data {
         return results; 
     }
     
+    public ArrayList<Long> getSubsumption(Long sctID, int steps)
+    {
+        ArrayList<Long> results = new ArrayList<Long>();
+        String isA = "116680003";
+        String sctIdString = String.valueOf(sctID);
+        
+        try //First get the parents of the concept
+        {
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost/test", "test", "");
+        Statement stmt = (Statement) con.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT destinationId FROM soa_relationship WHERE sourceId = "+sctIdString+" AND typeId = 116680003"+" AND active = 1");
+        
+         while (rs.next()) 
+            {
+            String destId = rs.getString("destinationId");
+            Long destinationId = Long.valueOf(destId);
+            results.add(destinationId);
+            //System.out.println("Parents: "+String.valueOf(destinationId));
+            }
+        
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        
+        if (steps == 1)
+        {
+            //We dont do anything more
+        }
+        else
+        {
+            //Find more parents based on the current resultset
+        }
+        
+        try //Then get the children of the concept
+        {
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost/test", "test", "");
+        Statement stmt = (Statement) con.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT sourceId FROM soa_relationship WHERE destinationId = "+sctIdString+" AND typeId = 116680003"+" AND active = 1");
+        
+         while (rs.next()) 
+            {
+            String sourceId = rs.getString("sourceId");
+            Long sourceID = Long.valueOf(sourceId);
+            results.add(sourceID);
+            //System.out.println("Children: "+String.valueOf(sourceID));
+            }
+        
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        
+        if (steps == 1)
+        {
+            //We dont do anything more
+        }
+        else
+        {
+            //Find more parents based on the current resultset
+        }
+                
+        return results;
+    }
+        
+    
 }

@@ -38,7 +38,7 @@ public class SaxHandler extends DefaultHandler
     @Override
     public void startDocument()
     {
-        System.out.println("I've begun parsing");
+        //System.out.println("I've begun parsing");
     }
     
     public void startElement(String uri, String localName, String qName, Attributes attributes)
@@ -178,17 +178,17 @@ public class SaxHandler extends DefaultHandler
         destIdBuffer.clear();
         fcsIdBuffer="";
                             
-       System.out.println("I'm done parsing");
-       System.out.println("No of normforms in subset: "+String.valueOf(subset.normForms.size()));
-       System.out.println("Containment check: ");
+       //System.out.println("I'm done parsing");
+       //System.out.println("No of normforms in subset: "+String.valueOf(subset.normForms.size()));
+       //System.out.println("Containment check: ");
        for (int i = 0; i<subset.normForms.size(); i++)
        {
            Normform normform = subset.normForms.get(i);
-           System.out.println("Fcs id: "+String.valueOf(normform.getFcsId()));
+           //System.out.println("Fcs id: "+String.valueOf(normform.getFcsId()));
 
            for (int k = 0; k < normform.getRelationships().size(); k++)
            {
-               System.out.println("Attribute: "+String.valueOf(normform.getRelationships().get(k).getAttributeId())+" | destId: "+String.valueOf(normform.getRelationships().get(k).getDestinationId()));
+               //System.out.println("Attribute: "+String.valueOf(normform.getRelationships().get(k).getAttributeId())+" | destId: "+String.valueOf(normform.getRelationships().get(k).getDestinationId()));
            }
        }
        

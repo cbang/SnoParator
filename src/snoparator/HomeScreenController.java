@@ -195,17 +195,7 @@ public class HomeScreenController implements Initializable {
                 if(successfulParseSubsetA == "true" && successfulParseSubsetB == "true") //Files were parsed correctly, and subsets are now present in the logic instance subset buffer
                 {
                     System.out.println("All is good, we proceed with comparing the stuff");
-                    logic.compareSubsets();
-//                    try
-//                    {
-//                      logic.compareSubsets();  
-//                    }
-//                    catch(Exception ex)
-//                    {
-//                      StringWriter errors = new StringWriter();
-//                      ex.printStackTrace(new PrintWriter(errors));
-//                      System.out.println(ex.toString());
-//                    }
+                    logic.compareSubsetsNrTwo();
                     
                 }
                 else //If parsing of files were not successful
@@ -256,7 +246,8 @@ public class HomeScreenController implements Initializable {
     
     @FXML
     void testPressed(ActionEvent event) {
-        logic.getTransitiveClosure(31978002L); //Transitive closure result of fracture of Tibia
+        //logic.getTransitiveClosure(31978002L); //Transitive closure result of fracture of Tibia
+        logic.getSubsumption(127909008L, 1);
     }
     
 }
