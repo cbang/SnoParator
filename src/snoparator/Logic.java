@@ -188,6 +188,7 @@ public class Logic {
         { 
             for (int j = 0; j<subBSize; j++)
             {
+                System.out.println("Normform: "+String.valueOf(j+1));
                 //We get the normforms that have to be compared from the subsets:
                 Normform nfA = subA.normForms.get(i);
                 Normform nfB = subB.normForms.get(j);
@@ -281,19 +282,185 @@ public class Logic {
                          
                         
                     }
-                    
-                    
-                
+                   
                 }
-                else //We procede to node B1
+                else //We procede to node B1 - Perform subsumption of the focus concept
                 {
+                    ArrayList<Long> subsumpMatches = getFcsIdSubsumption(nfA.getFcsId());
+                    //From this list we see if there is a granulated concept
+                    
+                    //Hvis nf B's fcsConcept kan findes i subsumption af A, så er de granulerede:
+                    if(subsumpMatches.contains(nfB.getFcsId()))
+                    {
+                        //Find the amount of unique matches possible:
+                        int maxMatches = maxUniqueMatches(nfA,nfB);
+                        //Find the amount of relationshipMatches (attribute + destConcept):
+                        int relationshipMatches = RelationshipMatches(nfA,nfB);
+                        
+                        //Now we check if the two normal forms have the same relationtypes (all or nothing). B2 check:
+                        if(sameAttributesOnly(nfA,nfB) == true)
+                        {
+                            //If they have the same attributes, we proceed to B3:
+                            //Used as parameters in the below method                            
+                            if(allDestConceptsSame(relationshipMatches,maxMatches) == true)
+                            {
+                                //THEN RESULTQUALIFIER 7:
+                                Comparison c = new Comparison(nfA,nfB,7,maxMatches,relationshipMatches,0,new ArrayList<Relationship>(),true);
+                                results.add(c);
+                                System.out.println("Result with classifier 7 added");
+                            }
+                            else //Otherwise - we perform subsumption testing on the destination concepts (Node B4)  
+                            {
+                                ArrayList<Relationship> subsumpMatchesList = subSumptionDestConceptMatches(nfA, nfB);
+                            
+                                if (subsumpMatchesList.size() > 0) //FLOW: B4 - YES!
+                                {
+                                    int noOfsubsumpMatches = subsumpMatchesList.size()/2; //Relationships are pairwise
+                                    //THEN RESULTQUALIFIER 8, indicating that all attributes are alike, but there is granularity present
+                                    //for destination concepts
+                                    Comparison c = new Comparison(nfA,nfB,8,maxMatches,relationshipMatches,noOfsubsumpMatches,subsumpMatchesList,true);
+                                    results.add(c);
+                                    System.out.println("Result with classifier 8 added");
+                                }
+
+                                else                                //FLOW: B4 - NO!
+                                {
+                                    //THEN RESULTQUALIFIER 9, indicating that all attributes are alike, but there is no granularity present
+                                    //for destination concepts
+                                    int noOfsubsumpMatches = subsumpMatchesList.size()/2; //Relationships are pairwise
+                                    Comparison c = new Comparison(nfA,nfB,9,maxMatches,relationshipMatches,noOfsubsumpMatches,subsumpMatchesList,true);
+                                    results.add(c);
+                                    System.out.println("Result with classifier 9 added");
+                                }
+                            }
+                            
+                        }
+                        else //The two normal forms do not share the same attributes --> Proceed to node B5
+                        {
+                            //Are all destination concepts the same?) Find the matching relationships
+                            //FLOW: B5
+                            if(sameDestConceptsOnly(nfA,nfB) == true)
+                            {
+                                Comparison c = new Comparison(nfA,nfB,10,maxMatches,relationshipMatches,0,new ArrayList<Relationship>(),true);
+                                results.add(c);
+                                System.out.println("Result with classifier 10 added");
+                            }
+                            else //Proceed to B6 - Perform subsumption test
+                            {
+                                ArrayList<Relationship> subsumpMatchesList = subSumptionDestConceptMatches(nfA, nfB);
+                            
+                                if (subsumpMatchesList.size() > 0)  //FLOW: B6 - YES!
+                                {
+                                    int noOfsubsumpMatches = subsumpMatchesList.size()/2; //Relationships are pairwise
+                                    //THEN RESULTQUALIFIER 11, indicating that all attributes are not alike, and there is granularity present
+                                    //for destination concepts
+                                    Comparison c = new Comparison(nfA,nfB,11,maxMatches,relationshipMatches,noOfsubsumpMatches,subsumpMatchesList,true);
+                                    results.add(c);
+                                    System.out.println("Result with classifier 11 added");
+                                }
+
+                                else                                //FLOW: B6 - NO!
+                                {
+                                    //THEN RESULTQUALIFIER 12, indicating that all attributes are not alike, and there is no granularity present
+                                    //for destination concepts
+                                    int noOfsubsumpMatches = subsumpMatchesList.size()/2; //Relationships are pairwise
+                                    Comparison c = new Comparison(nfA,nfB,12,maxMatches,relationshipMatches,noOfsubsumpMatches,subsumpMatchesList,true);
+                                    results.add(c);
+                                    System.out.println("Result with classifier 12 added");
+                                }
+                            }
+                        }
+                    }  
+                    
+                    else //No granularity of FcsConcept - We Proceed to node B7
+                    {
+                        //Find the amount of unique matches possible:
+                        int maxMatches = maxUniqueMatches(nfA,nfB);
+                        //Find the amount of relationshipMatches (attribute + destConcept):
+                        int relationshipMatches = RelationshipMatches(nfA,nfB);
+                        
+                        //Now we check if the two normal forms have the same relationtypes (all or nothing). B7 check:
+                        if(sameAttributesOnly(nfA,nfB) == true)
+                        {
+                            //If they have the same attributes, we proceed to B8:
+                            //Used as parameters in the below method                            
+                            if(allDestConceptsSame(relationshipMatches,maxMatches) == true)
+                            {
+                                //THEN RESULTQUALIFIER 13:
+                                Comparison c = new Comparison(nfA,nfB,13,maxMatches,relationshipMatches,0,new ArrayList<Relationship>(),false);
+                                results.add(c);
+                                System.out.println("Result with classifier 13 added");
+                            }
+                            else //Otherwise - we perform subsumption testing on the destination concepts (Node B9)  
+                            {
+                                ArrayList<Relationship> subsumpMatchesList = subSumptionDestConceptMatches(nfA, nfB);
+                            
+                                if (subsumpMatchesList.size() > 0) //FLOW: B9 - YES!
+                                {
+                                    int noOfsubsumpMatches = subsumpMatchesList.size()/2; //Relationships are pairwise
+                                    //THEN RESULTQUALIFIER 14, indicating that all attributes are alike, but there is granularity present
+                                    //for destination concepts
+                                    Comparison c = new Comparison(nfA,nfB,14,maxMatches,relationshipMatches,noOfsubsumpMatches,subsumpMatchesList,false);
+                                    results.add(c);
+                                    System.out.println("Result with classifier 14 added");
+                                }
+
+                                else                                //FLOW: B9 - NO!
+                                {
+                                    //THEN RESULTQUALIFIER 15, indicating that all attributes are alike, but there is no granularity present
+                                    //for destination concepts
+                                    int noOfsubsumpMatches = subsumpMatchesList.size()/2; //Relationships are pairwise
+                                    Comparison c = new Comparison(nfA,nfB,15,maxMatches,relationshipMatches,noOfsubsumpMatches,subsumpMatchesList,false);
+                                    results.add(c);
+                                    System.out.println("Result with classifier 15 added");
+                                }
+                            }
+                            
+                        }
+                        else //The two normal forms do not share the same attributes --> Proceed to node B10
+                        {
+                            //Are all destination concepts the same?) Find the matching relationships
+                            //FLOW: B10
+                            if(sameDestConceptsOnly(nfA,nfB) == true)
+                            {
+                                Comparison c = new Comparison(nfA,nfB,16,maxMatches,relationshipMatches,0,new ArrayList<Relationship>(),false);
+                                results.add(c);
+                                System.out.println("Result with classifier 16 added");
+                            }
+                            else //Proceed to B11 - Perform subsumption test
+                            {
+                                ArrayList<Relationship> subsumpMatchesList = subSumptionDestConceptMatches(nfA, nfB);
+                            
+                                if (subsumpMatchesList.size() > 0)  //FLOW: B11 - YES!
+                                {
+                                    int noOfsubsumpMatches = subsumpMatchesList.size()/2; //Relationships are pairwise
+                                    //THEN RESULTQUALIFIER 17, indicating that all attributes are not alike, and there is granularity present
+                                    //for destination concepts
+                                    Comparison c = new Comparison(nfA,nfB,17,maxMatches,relationshipMatches,noOfsubsumpMatches,subsumpMatchesList,false);
+                                    results.add(c);
+                                    System.out.println("Result with classifier 17 added");
+                                }
+
+                                else                                //FLOW: B11 - NO!
+                                {
+                                    //THEN RESULTQUALIFIER 18, indicating that all attributes are not alike, and there is no granularity present
+                                    //for destination concepts
+                                    int noOfsubsumpMatches = subsumpMatchesList.size()/2; //Relationships are pairwise
+                                    Comparison c = new Comparison(nfA,nfB,18,maxMatches,relationshipMatches,noOfsubsumpMatches,subsumpMatchesList,false);
+                                    results.add(c);
+                                    System.out.println("Result with classifier 18 added");
+                                }
+                            }
+                        }
+                    }
                     
                 }
             }
-                
                 
             }
         
+            //At the end of the method, we print the comparisons that have been made and are present in the results buffer
+            System.out.println("_____________________________________________________\n");
             for(int m = 0; m < results.size(); m++)
             {
                 System.out.println(results.get(m).myToString());
@@ -586,9 +753,17 @@ public class Logic {
         return granularityResults;
     }
     
+    public ArrayList<Long> getFcsIdSubsumption(Long sctID)
+    {
+        ArrayList<Long> resultSet = dataInstance.getSubsumption(sctID,1);
+        
+        return resultSet;
+    }
+    
     public int maxUniqueMatches(Normform normformA, Normform normformB)
     {
-        //The max amount of maxmatches there can be is the product of unique relationships that are compared
+        //The method returns the max amount of matches there can be bewtween two normforms
+        // That is, the amount of unique matches
         relBuffer = new ArrayList<Relationship>();
         uniqueRelationships = new ArrayList<Relationship>();
         boolean flag = false;

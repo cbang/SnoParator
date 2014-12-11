@@ -8,9 +8,8 @@ package snoparator;
 
 import dialogs.ErrorDialogController;
 import java.io.File;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -247,7 +246,14 @@ public class HomeScreenController implements Initializable {
     @FXML
     void testPressed(ActionEvent event) {
         //logic.getTransitiveClosure(31978002L); //Transitive closure result of fracture of Tibia
-        logic.getSubsumption(127909008L, 1);
+        //logic.getSubsumption(127909008L, 1);
+        ArrayList<Long> result = logic.getSubsumption(74732009L, 1);
+        
+        for (int i = 0; i<result.size() ; i++)
+        {
+            System.out.println(String.valueOf(result.get(i).longValue()));
+        }
+        
     }
     
 }

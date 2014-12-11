@@ -38,13 +38,30 @@ public class Comparison {
     {
         ArrayList<String> qualifierTypes = new ArrayList<>();
         String one = "1: Full Match = All attributes + destination IDs are pairwise identical";
-        String two = "2: Attributes = All identical. Destination IDs = Granulated";
-        String three = "3: Attributes = All identical. Destination IDs = Not Granulated";
-        String four = "4: Attributes = Not identical. Destination IDs = Identical";
-        String five = "5: Attributes = Not identical. Destination IDs = Granulated";
-        String six = "6: Attributes = Not identical. Destination IDs = Not Granulated";
-        qualifierTypes.add(one);qualifierTypes.add(two);qualifierTypes.add(three);qualifierTypes.add(four);qualifierTypes.add(five);qualifierTypes.add(six);
-        
+        String two = "2: Attributes = All are identical. Granularity Detected in Destination IDs";
+        String three = "3: Attributes = All are identical. No granularity Detected in Destination IDs";
+        String four = "4: Attributes = Not all are identical. Destination IDs are identical";
+        String five = "5: Attributes = Not all are identical. Granularity Detected in Destination IDs";
+        String six = "6: Attributes = Not all are identical. No granularity Detected in Destination IDs";
+        String seven = "7: FcsConcept Granulated. Otherwise Full match";
+        String eight = "8: FcsConcept Granulated. Attributes = All are identical. Granularity Detected in Destination IDs";
+        String nine = "9: FcsConcept Granulated. Attributes = All are identical. No granularity Detected in Destination IDs";
+        String ten = "10: FcsConcept Granulated. Attributes = Not all are identical. Destination IDs are identical";
+        String eleven = "11: FcsConcept Granulated. Attributes = Not all are identical. Granularity Detected in Destination IDs";
+        String twelve = "12: FcsConcept Granulated. Attributes = Not all are identical. No granularity Detected in Destination IDs";
+        String thirteen = "13: FcsConcept not granulated. Otherwise Full match";
+        String fourteen = "14: FcsConcept not granulated. Attributes = All are identical. Granularity Detected in Destination IDs";
+        String fifteen = "15: FcsConcept not granulated. Attributes = All are identical. No granularity Detected in Destination IDs";
+        String sixteen = "16: FcsConcept not granulated. Attributes = Not all are identical. Destination IDs are identical";
+        String seventeen = "17: FcsConcept not granulated. Attributes = Not all are identical. Granularity Detected in Destination IDs";
+        String eighteen = "18: FcsConcept not granulated. Attributes = Not all are identical. No granularity Detected in Destination IDs";
+                
+        qualifierTypes.add(one);qualifierTypes.add(two);qualifierTypes.add(three);qualifierTypes.add(four);
+        qualifierTypes.add(five);qualifierTypes.add(six);qualifierTypes.add(seven);qualifierTypes.add(eight);
+        qualifierTypes.add(nine);qualifierTypes.add(ten);qualifierTypes.add(eleven);qualifierTypes.add(twelve);
+        qualifierTypes.add(thirteen);qualifierTypes.add(fourteen);qualifierTypes.add(fifteen);qualifierTypes.add(sixteen);
+        qualifierTypes.add(seventeen);qualifierTypes.add(eighteen);
+
         String result = "Normform A fcsId: "+String.valueOf(expA.getFcsId()+" | Normform B fcsId: "+String.valueOf(expB.getFcsId())+"\n");
         result = result + "Result Qualifier: "+String.valueOf(qualifierTypes.get(resultQualifier-1))+"\n";
         result = result + "Total unique relationships: "+String.valueOf(totalRelationships)+"\n";
@@ -62,6 +79,7 @@ public class Comparison {
                                      
         }
         result = result + "Granulated Focus Concept?: "+String.valueOf(granulatedFcsConcept)+"\n";
+        result = result + "Idas Validering | Relation: "+String.valueOf(expB.getRelationships().get(0).getAttributeId())+" | Destinations Id: "+String.valueOf(expB.getRelationships().get(0).getDestinationId())+"\n";
         result = result + "_____________________________________________________\n";
         return result;
         
