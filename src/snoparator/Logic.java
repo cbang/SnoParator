@@ -170,7 +170,7 @@ public class Logic {
     
     ////////////////// COMPARISON METHODS //////////////////
     
-    public void compareSubsetsNrTwo()
+    public void compareSubsets()
     {
         Subset subA = subsets.get(0);
         Subset subB = subsets.get(1);
@@ -523,8 +523,9 @@ public class Logic {
         //now we have two buffers with only unique values of attributes from both normalforms
         //now we have to see, if the attributes in a can be found in b
         
-        boolean allPresent = true;
-        boolean foundFlag = false;
+        boolean allPresent = false;
+        int expectedAmountOfEquals = (a.size()+b.size())/2;
+        int amountOfEquals = 0;
         
         for (int i = 0; i<a.size(); i++)
         {
@@ -532,18 +533,19 @@ public class Logic {
             {
                 if(a.get(i).longValue()==b.get(j).longValue())
                 {
-                    foundFlag = true;
-                }
-                
-                if(foundFlag == false)
-                {
-                allPresent = false;
+                    //foundFlag = true;
+                    amountOfEquals++;
                 }
                  
             }
-            foundFlag = false;
             
         }
+        
+        if(amountOfEquals==expectedAmountOfEquals)
+        {
+            allPresent = true;
+        }
+        
                 
         if (a.size() == b.size() && allPresent == true)
         {
@@ -607,8 +609,9 @@ public class Logic {
         //now we have two buffers with only unique values of destination Concepts from both normalforms
         //now we have to see, if the destination concepts in a can be found in b
         
-        boolean allPresent = true;
-        boolean foundFlag = false;
+        boolean allPresent = false;
+        int expectedAmountOfEquals = (a.size()+b.size())/2;
+        int amountOfEquals = 0;
         
         for (int i = 0; i<a.size(); i++)
         {
@@ -616,17 +619,16 @@ public class Logic {
             {
                 if(a.get(i).longValue()==b.get(j).longValue())
                 {
-                    foundFlag = true;
-                }
-                
-                if(foundFlag == false)
-                {
-                allPresent = false;
+                    amountOfEquals++;
                 }
                  
             }
-            foundFlag = false;
-            
+             
+        }
+        
+        if(amountOfEquals==expectedAmountOfEquals)
+        {
+            allPresent = true;
         }
                 
         if (a.size() == b.size() && allPresent == true)

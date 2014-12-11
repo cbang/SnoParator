@@ -194,8 +194,7 @@ public class HomeScreenController implements Initializable {
                 if(successfulParseSubsetA == "true" && successfulParseSubsetB == "true") //Files were parsed correctly, and subsets are now present in the logic instance subset buffer
                 {
                     System.out.println("All is good, we proceed with comparing the stuff");
-                    logic.compareSubsetsNrTwo();
-                    
+                    logic.compareSubsets();  
                 }
                 else //If parsing of files were not successful
                 {
