@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -38,6 +39,7 @@
                                  <children>
                                     <Label layoutX="15.0" layoutY="15.0" text="Output specifications:" />
                                     <Button fx:id="compareBtn" layoutX="21.0" layoutY="152.0" mnemonicParsing="false" onAction="#compareBtnClicked" text="Compare" />
+                                    <Button fx:id="btn_test" layoutX="134.0" layoutY="152.0" mnemonicParsing="false" onAction="#testPressed" prefHeight="25.0" prefWidth="115.0" text="TESTING IS FUN!" />
                                  </children>
                               </Pane>
                            </children>
@@ -50,7 +52,19 @@
                <children>
                   <Pane layoutX="237.0" layoutY="239.0" prefHeight="601.0" prefWidth="673.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Button fx:id="btn_test" layoutX="26.0" layoutY="24.0" mnemonicParsing="false" onAction="#testPressed" prefHeight="125.0" prefWidth="242.0" text="TESTING IS FUN!" />
+                        <ListView fx:id="listview_subsetBList" layoutX="145.0" layoutY="95.0" prefHeight="384.0" prefWidth="117.0" />
+                        <Label fx:id="label_rankedList" layoutX="276.0" layoutY="70.0" text="Ranked list of overlap:" />
+                        <Label fx:id="label_subsetAList" layoutX="14.0" layoutY="70.0" text="Subset A Expressions:" />
+                        <ListView fx:id="listview_subsetAList" layoutX="14.0" layoutY="95.0" onMouseClicked="#handleMouseClickInSubsetAList" prefHeight="384.0" prefWidth="117.0" />
+                        <Label fx:id="label_subsetBList" layoutX="145.0" layoutY="70.0" text="Subset B: Expressions:" />
+                        <Label fx:id="label_explaination" layoutX="14.0" layoutY="14.0" text="Select the expression in A, you want to compare with all other expressions in B:" />
+                        <TableView fx:id="tableView_overlaps" layoutX="276.0" layoutY="95.0" prefHeight="384.0" prefWidth="387.0">
+                          <columns>
+                            <TableColumn fx:id="collumn_expA" prefWidth="105.0" text="Exp A SCT-ID" />
+                            <TableColumn fx:id="collumn_expB" prefWidth="105.0" text="Exp B SCT-ID" />
+                              <TableColumn fx:id="collumn_RQ" prefWidth="50.0" text="RQ" />
+                          </columns>
+                        </TableView>
                      </children></Pane>
                </children>
             </AnchorPane>

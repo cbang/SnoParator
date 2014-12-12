@@ -64,22 +64,22 @@ public class Comparison {
         
         String result = "Comparison: \n";
         result = result + "Normform A fcsId: "+String.valueOf(expA.getFcsId()+" | Normform B fcsId: "+String.valueOf(expB.getFcsId())+"\n");
-        result = result + "Result Qualifier = "+String.valueOf(qualifierTypes.get(resultQualifier-1))+"\n";
-        result = result + "Total unique relationships: "+String.valueOf(totalRelationships)+"\n";
-        result = result + "Matching Pairwise Relationships: "+String.valueOf(matchingRelationships)+"\n";
-        result = result + "Granulated Destination Concepts: "+String.valueOf(granulatedDestConcepts)+"\n";
+        result = result + "Result Qualifier = "+String.valueOf(qualifierTypes.get(getResultQualifier()-1))+"\n";
+        result = result + "Total unique relationships: "+String.valueOf(getTotalRelationships())+"\n";
+        result = result + "Matching Pairwise Relationships: "+String.valueOf(getMatchingRelationships())+"\n";
+        result = result + "Granulated Destination Concepts: "+String.valueOf(getGranulatedDestConcepts())+"\n";
         result = result + "Pairwise relationships, where granularity is detected:\n";
-        if (granulatedDestConceptRels.size()==0)
+        if (getGranulatedDestConceptRels().size()==0)
         {
             result = result + "None\n";
         }
-        for (int i = 0; i<granulatedDestConceptRels.size(); i += 2) //Increment by two because they are pairwise! 
+        for (int i = 0; i<getGranulatedDestConceptRels().size(); i += 2) //Increment by two because they are pairwise! 
         {
-            result = result +String.valueOf(i+1)+":\n" +"Attribute: "+String.valueOf(granulatedDestConceptRels.get(i).getAttributeId())+" and Destination Id: "+String.valueOf(granulatedDestConceptRels.get(i).getDestinationId())+"\n"
-            +"With respect to:\n"+"Attribute: "+String.valueOf(granulatedDestConceptRels.get(i+1).getAttributeId())+" and Destination Id: "+String.valueOf(granulatedDestConceptRels.get(i+1).getDestinationId())+"\n";
+            result = result +String.valueOf(i+1)+":\n" +"Attribute: "+String.valueOf(getGranulatedDestConceptRels().get(i).getAttributeId())+" and Destination Id: "+String.valueOf(getGranulatedDestConceptRels().get(i).getDestinationId())+"\n"
+            +"With respect to:\n"+"Attribute: "+String.valueOf(getGranulatedDestConceptRels().get(i+1).getAttributeId())+" and Destination Id: "+String.valueOf(getGranulatedDestConceptRels().get(i+1).getDestinationId())+"\n";
                                      
         }
-        result = result + "Granulated Focus Concept?: "+String.valueOf(granulatedFcsConcept)+"\n";
+        result = result + "Granulated Focus Concept?: "+String.valueOf(isGranulatedFcsConcept())+"\n";
         result = result + "Test validation | Relation: "+String.valueOf(expB.getRelationships().get(0).getAttributeId())+" | Destinations Id: "+String.valueOf(expB.getRelationships().get(0).getDestinationId())+"\n";
         result = result + "_____________________________________________________\n";
         return result;
@@ -112,5 +112,89 @@ public class Comparison {
      */
     public void setExpB(Expression expB) {
         this.expB = expB;
+    }
+
+    /**
+     * @return the resultQualifier
+     */
+    public int getResultQualifier() {
+        return resultQualifier;
+    }
+
+    /**
+     * @param resultQualifier the resultQualifier to set
+     */
+    public void setResultQualifier(int resultQualifier) {
+        this.resultQualifier = resultQualifier;
+    }
+
+    /**
+     * @return the totalRelationships
+     */
+    public int getTotalRelationships() {
+        return totalRelationships;
+    }
+
+    /**
+     * @param totalRelationships the totalRelationships to set
+     */
+    public void setTotalRelationships(int totalRelationships) {
+        this.totalRelationships = totalRelationships;
+    }
+
+    /**
+     * @return the matchingRelationships
+     */
+    public int getMatchingRelationships() {
+        return matchingRelationships;
+    }
+
+    /**
+     * @param matchingRelationships the matchingRelationships to set
+     */
+    public void setMatchingRelationships(int matchingRelationships) {
+        this.matchingRelationships = matchingRelationships;
+    }
+
+    /**
+     * @return the granulatedDestConcepts
+     */
+    public int getGranulatedDestConcepts() {
+        return granulatedDestConcepts;
+    }
+
+    /**
+     * @param granulatedDestConcepts the granulatedDestConcepts to set
+     */
+    public void setGranulatedDestConcepts(int granulatedDestConcepts) {
+        this.granulatedDestConcepts = granulatedDestConcepts;
+    }
+
+    /**
+     * @return the granulatedDestConceptRels
+     */
+    public ArrayList<Relationship> getGranulatedDestConceptRels() {
+        return granulatedDestConceptRels;
+    }
+
+    /**
+     * @param granulatedDestConceptRels the granulatedDestConceptRels to set
+     */
+    public void setGranulatedDestConceptRels(ArrayList<Relationship> granulatedDestConceptRels) {
+        this.granulatedDestConceptRels = granulatedDestConceptRels;
+    }
+
+    /**
+     * @return the granulatedFcsConcept
+     */
+    public boolean isGranulatedFcsConcept() {
+        return granulatedFcsConcept;
+    }
+
+    /**
+     * @param granulatedFcsConcept the granulatedFcsConcept to set
+     */
+    public void setGranulatedFcsConcept(boolean granulatedFcsConcept) {
+        this.granulatedFcsConcept = granulatedFcsConcept;
     }
 }

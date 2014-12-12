@@ -30,9 +30,9 @@ public class Logic {
     
     private File subsetA;
     private File subsetB;
-    private ArrayList<Subset> subsets;
+    public ArrayList<Subset> subsets;
     private Data dataInstance;
-    private ArrayList<Comparison> results;
+    public ArrayList<Comparison> results;
     private ArrayList<Relationship> relBuffer;
     private ArrayList<Relationship> uniqueRelationships;
     
