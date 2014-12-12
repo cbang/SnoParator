@@ -188,10 +188,10 @@ public class Logic {
         { 
             for (int j = 0; j<subBSize; j++)
             {
-                System.out.println("Normform: "+String.valueOf(j+1));
+                System.out.println("Comparing normform "+String.valueOf(i+1)+" in subset A with normform "+String.valueOf(j+1)+" in subset B.");
                 //We get the normforms that have to be compared from the subsets:
-                Normform nfA = subA.normForms.get(i);
-                Normform nfB = subB.normForms.get(j);
+                Expression nfA = subA.normForms.get(i);
+                Expression nfB = subB.normForms.get(j);
                                 
                 //Now, NODE A1 (FcsId's the same?):
                 if(compareFcsIds(nfA,nfB) == true) //FLOW: A1
@@ -468,7 +468,7 @@ public class Logic {
         
         }
         
-    public boolean sameAttributesOnly(Normform nfA , Normform nfB)
+    public boolean sameAttributesOnly(Expression nfA , Expression nfB)
     {
         boolean result = false;
         //This method finds out, if the two normforms, have the samme attributes
@@ -554,7 +554,7 @@ public class Logic {
         return result;
     }
     
-    public boolean sameDestConceptsOnly(Normform nfA , Normform nfB)
+    public boolean sameDestConceptsOnly(Expression nfA , Expression nfB)
     {
         boolean result = false;
         //This method finds out, if the two normforms, have the samme destination Concepts
@@ -649,7 +649,7 @@ public class Logic {
         return result;
     }
     
-    public boolean compareFcsIds(Normform nfA, Normform nfB)
+    public boolean compareFcsIds(Expression nfA, Expression nfB)
     {
         boolean result = false;
         
@@ -661,7 +661,7 @@ public class Logic {
         return result;
     }
     
-    public int attributeMatches(Normform normformA, Normform normformB) 
+    public int attributeMatches(Expression normformA, Expression normformB) 
             //Method returns the amount of matches in attributes
     {
         int matchingAtts = 0; //Int for telling how many attribute matches there are
@@ -685,7 +685,7 @@ public class Logic {
         return matchingAtts;
     }
     
-    public int RelationshipMatches(Normform normformA, Normform normformB) 
+    public int RelationshipMatches(Expression normformA, Expression normformB) 
             //Method returns the amount of matches in both attributes and relationships combined
     {
         int matchingRelationships = 0; //Int for telling how many attributerelationship matches there are
@@ -710,7 +710,7 @@ public class Logic {
         return matchingRelationships;
     }
     
-    public ArrayList<Relationship> subSumptionDestConceptMatches(Normform normformA, Normform normformB)
+    public ArrayList<Relationship> subSumptionDestConceptMatches(Expression normformA, Expression normformB)
             //Method returns the pair-wise relationships, where two of relationships have the same
             //attributes, but two granulated destination concepts with a leap of 1 in subsumption
             //Pairwise: first two are a pair, 3-4 is a pair and so on...
@@ -762,7 +762,7 @@ public class Logic {
         return resultSet;
     }
     
-    public int maxUniqueMatches(Normform normformA, Normform normformB)
+    public int maxUniqueMatches(Expression normformA, Expression normformB)
     {
         //The method returns the max amount of matches there can be bewtween two normforms
         // That is, the amount of unique matches

@@ -100,7 +100,7 @@ public class SaxHandler extends DefaultHandler
                                 rel.add(relationshipBuffer.get(i));
                             }
                             
-                            Normform nf = new Normform(fcsIdLongVal,rel);
+                            Expression nf = new Expression(fcsIdLongVal,rel);
                             //Add this to the subset
                             subset.normForms.add(nf);
                             //Reset Buffers
@@ -169,7 +169,7 @@ public class SaxHandler extends DefaultHandler
             rel.add(relationshipBuffer.get(i));
         }
 
-        Normform nf = new Normform(fcsIdLongVal,rel);
+        Expression nf = new Expression(fcsIdLongVal,rel);
         //Add this to the subset
         subset.normForms.add(nf);
         //Reset Buffers for the last time
@@ -183,8 +183,7 @@ public class SaxHandler extends DefaultHandler
        //System.out.println("Containment check: ");
        for (int i = 0; i<subset.normForms.size(); i++)
        {
-           Normform normform = subset.normForms.get(i);
-           //System.out.println("Fcs id: "+String.valueOf(normform.getFcsId()));
+           Expression normform = subset.normForms.get(i);
 
            for (int k = 0; k < normform.getRelationships().size(); k++)
            {

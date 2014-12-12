@@ -12,11 +12,11 @@ import java.util.ArrayList;
  *
  * @author Christian
  */
-public class Normform {
+public class Expression {
     private long fcsId;
     private ArrayList<Relationship> relationships;
     
-    public Normform(long fcsId, ArrayList<Relationship> relationships)
+    public Expression(long fcsId, ArrayList<Relationship> relationships)
     {
         this.fcsId = fcsId;
         this.relationships = relationships;

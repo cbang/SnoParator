@@ -14,11 +14,11 @@ import java.util.ArrayList;
  */
 public class Subset {
     
-    public ArrayList<Normform> normForms;
+    public ArrayList<Expression> normForms;
     
     public Subset()
     {
-        normForms = new ArrayList<Normform>();
+        normForms = new ArrayList<Expression>();
     }
     
 }

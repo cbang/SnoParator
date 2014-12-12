@@ -13,8 +13,8 @@ import java.util.ArrayList;
  * @author Christian
  */
 public class Comparison {
-    private Normform expA;
-    private Normform expB;
+    private Expression expA;
+    private Expression expB;
     private int resultQualifier;
     private int totalRelationships;
     private int matchingRelationships;
@@ -22,7 +22,7 @@ public class Comparison {
     private ArrayList<Relationship> granulatedDestConceptRels;
     private boolean granulatedFcsConcept;
     
-    public Comparison(Normform expA, Normform expB, int resultQualifier, int totalRelationships, int matchingRelationships, int granulatedDestConcepts, ArrayList<Relationship> granulatedDestConceptRels, boolean granulatedFcsConcept)
+    public Comparison(Expression expA, Expression expB, int resultQualifier, int totalRelationships, int matchingRelationships, int granulatedDestConcepts, ArrayList<Relationship> granulatedDestConceptRels, boolean granulatedFcsConcept)
     {
         this.expA = expA;
         this.expB = expB;
@@ -61,16 +61,17 @@ public class Comparison {
         qualifierTypes.add(nine);qualifierTypes.add(ten);qualifierTypes.add(eleven);qualifierTypes.add(twelve);
         qualifierTypes.add(thirteen);qualifierTypes.add(fourteen);qualifierTypes.add(fifteen);qualifierTypes.add(sixteen);
         qualifierTypes.add(seventeen);qualifierTypes.add(eighteen);
-
-        String result = "Normform A fcsId: "+String.valueOf(expA.getFcsId()+" | Normform B fcsId: "+String.valueOf(expB.getFcsId())+"\n");
-        result = result + "Result Qualifier: "+String.valueOf(qualifierTypes.get(resultQualifier-1))+"\n";
+        
+        String result = "Comparison: \n";
+        result = result + "Normform A fcsId: "+String.valueOf(expA.getFcsId()+" | Normform B fcsId: "+String.valueOf(expB.getFcsId())+"\n");
+        result = result + "Result Qualifier = "+String.valueOf(qualifierTypes.get(resultQualifier-1))+"\n";
         result = result + "Total unique relationships: "+String.valueOf(totalRelationships)+"\n";
         result = result + "Matching Pairwise Relationships: "+String.valueOf(matchingRelationships)+"\n";
         result = result + "Granulated Destination Concepts: "+String.valueOf(granulatedDestConcepts)+"\n";
         result = result + "Pairwise relationships, where granularity is detected:\n";
         if (granulatedDestConceptRels.size()==0)
         {
-            result = result + "Noone\n";
+            result = result + "None\n";
         }
         for (int i = 0; i<granulatedDestConceptRels.size(); i += 2) //Increment by two because they are pairwise! 
         {
@@ -79,7 +80,7 @@ public class Comparison {
                                      
         }
         result = result + "Granulated Focus Concept?: "+String.valueOf(granulatedFcsConcept)+"\n";
-        result = result + "Idas Validering | Relation: "+String.valueOf(expB.getRelationships().get(0).getAttributeId())+" | Destinations Id: "+String.valueOf(expB.getRelationships().get(0).getDestinationId())+"\n";
+        result = result + "Test validation | Relation: "+String.valueOf(expB.getRelationships().get(0).getAttributeId())+" | Destinations Id: "+String.valueOf(expB.getRelationships().get(0).getDestinationId())+"\n";
         result = result + "_____________________________________________________\n";
         return result;
         
@@ -88,28 +89,28 @@ public class Comparison {
     /**
      * @return the expA
      */
-    public Normform getExpA() {
+    public Expression getExpA() {
         return expA;
     }
 
     /**
      * @param expA the expA to set
      */
-    public void setExpA(Normform expA) {
+    public void setExpA(Expression expA) {
         this.expA = expA;
     }
 
     /**
      * @return the expB
      */
-    public Normform getExpB() {
+    public Expression getExpB() {
         return expB;
     }
 
     /**
      * @param expB the expB to set
      */
-    public void setExpB(Normform expB) {
+    public void setExpB(Expression expB) {
         this.expB = expB;
     }
 }
