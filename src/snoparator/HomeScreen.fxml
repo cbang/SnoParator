@@ -38,8 +38,8 @@
                               <Pane layoutX="107.0" layoutY="40.0" prefHeight="296.0" prefWidth="267.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <Label layoutX="15.0" layoutY="15.0" text="Output specifications:" />
-                                    <Button fx:id="compareBtn" layoutX="21.0" layoutY="152.0" mnemonicParsing="false" onAction="#compareBtnClicked" text="Compare" />
-                                    <Button fx:id="btn_test" layoutX="134.0" layoutY="152.0" mnemonicParsing="false" onAction="#testPressed" prefHeight="25.0" prefWidth="115.0" text="TESTING IS FUN!" />
+                                    <Button fx:id="compareBtn" layoutX="15.0" layoutY="152.0" mnemonicParsing="false" onAction="#compareBtnClicked" text="Compare" />
+                                    <Button fx:id="btn_test" layoutX="134.0" layoutY="152.0" mnemonicParsing="false" onAction="#testPressed" prefHeight="25.0" prefWidth="115.0" text="Testing is fun" />
                                  </children>
                               </Pane>
                            </children>
@@ -60,11 +60,13 @@
                         <Label fx:id="label_explaination" layoutX="14.0" layoutY="14.0" text="Select the expression in A, you want to compare with all other expressions in B:" />
                         <TableView fx:id="tableView_overlaps" layoutX="276.0" layoutY="95.0" prefHeight="384.0" prefWidth="387.0">
                           <columns>
-                            <TableColumn fx:id="collumn_expA" prefWidth="105.0" text="Exp A SCT-ID" />
-                            <TableColumn fx:id="collumn_expB" prefWidth="105.0" text="Exp B SCT-ID" />
-                              <TableColumn fx:id="collumn_RQ" prefWidth="50.0" text="RQ" />
+                            <TableColumn fx:id="column_expA" prefWidth="105.0" text="Exp A SCT-ID" />
+                            <TableColumn fx:id="column_expB" prefWidth="105.0" text="Exp B SCT-ID" />
+                              <TableColumn fx:id="column_RQ" prefWidth="50.0" text="RQ" />
+                              <TableColumn fx:id="column_match" prefWidth="126.0" text="Match" />
                           </columns>
                         </TableView>
+                        <Button fx:id="btn_compareNew" layoutX="517.0" layoutY="13.0" mnemonicParsing="false" onAction="#compareNewBtnClick" prefHeight="36.0" prefWidth="146.0" text="Compare new Subsets" />
                      </children></Pane>
                </children>
             </AnchorPane>

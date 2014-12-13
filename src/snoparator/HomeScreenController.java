@@ -22,13 +22,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 /**
  * FXML Controller class
@@ -49,6 +52,7 @@ public class HomeScreenController implements Initializable {
     private Boolean fileChooserBOpen;
     private ObservableList<String> subAExpressions;
     private ObservableList<String> subBExpressions;
+    private int firstEvent;
     
     ////////////////    FXML attributes (layout components)    //////////////////
     
@@ -83,9 +87,6 @@ public class HomeScreenController implements Initializable {
     private Label label_subsetBList;
     
     @FXML
-    private ListView<String> listview_RankedList;
-    
-    @FXML
     private ListView<String> listview_subsetAList;
     
     @FXML
@@ -95,13 +96,19 @@ public class HomeScreenController implements Initializable {
     private TableView<TableData> tableView_overlaps;
     
     @FXML
-    private TableColumn<TableData, String> collumn_expA;
+    private TableColumn<TableData, String> column_expA;
     
     @FXML
-    private TableColumn<TableData, String> collumn_expB;
+    private TableColumn<TableData, String> column_expB;
     
     @FXML
-    private TableColumn<TableData, String> collumn_RQ;
+    private TableColumn<TableData, Integer> column_RQ;
+    
+    @FXML
+    private TableColumn<TableData, String> column_match;
+    
+    @FXML
+    private Button btn_compareNew;
     
     
     ////////////////    Initialization of controller class    //////////////////
@@ -116,10 +123,52 @@ public class HomeScreenController implements Initializable {
         fileChooserBOpen = false;
         listview_subsetBList.setMouseTransparent(false); //Makes B-subset list not interactable
         listview_subsetBList.setFocusTraversable(true);
+        btn_test.setVisible(false);
         //Association of table values
-        collumn_expA.setCellValueFactory(new PropertyValueFactory<TableData, String>("expAFcsId"));
-        collumn_expB.setCellValueFactory(new PropertyValueFactory<TableData, String>("expBFcsId"));
-        collumn_RQ.setCellValueFactory(new PropertyValueFactory<TableData, String>("RQ"));
+        column_expA.setCellValueFactory(new PropertyValueFactory<TableData, String>("expAFcsId"));
+        column_expB.setCellValueFactory(new PropertyValueFactory<TableData, String>("expBFcsId"));
+        column_RQ.setCellValueFactory(new PropertyValueFactory<TableData, Integer>("RQ"));
+        column_match.setCellValueFactory(new PropertyValueFactory<TableData, String>("match"));
+        firstEvent = 0;
+       
+        //Making an mouse-over tooltip on the resultQualifier column
+        column_RQ.setCellFactory(new Callback<TableColumn<TableData, Integer>, TableCell<TableData, Integer>>() {
+        @Override
+        public TableCell<TableData, Integer> call(TableColumn<TableData, Integer> p) {
+            return new TableCell<TableData, Integer>() {
+                @Override
+                
+                public void updateItem(Integer t, boolean empty) {
+                    if(firstEvent < 2)
+                    {
+                        firstEvent ++;
+                    }
+                    else
+                    {
+                        super.updateItem(t, empty);
+//                    int RQ = 0;
+//                    System.out.println(RQ);
+                        if (t == null) {
+                            setTooltip(null);
+                            setText(null);
+
+                        } else {
+                            Tooltip tooltip = new Tooltip();
+                            TableData myModel = getTableView().getItems().get(getTableRow().getIndex());
+                            tooltip.setText(myModel.getDescription());
+                            setTooltip(tooltip);
+                            setText(t.toString());
+                        }
+                    }
+                    
+                }
+            };
+        }
+        });
+        
+        //Default sorting
+        column_RQ.setSortType(TableColumn.SortType.ASCENDING);
+        tableView_overlaps.getSortOrder().add(column_RQ);
     }
     
     ////////////////    Class methods   //////////////////
@@ -145,6 +194,7 @@ public class HomeScreenController implements Initializable {
         tableView_overlaps.setVisible(false);
         listview_subsetAList.setVisible(false);
         listview_subsetBList.setVisible(false);
+        btn_compareNew.setVisible(false);
        
     }
     
@@ -157,6 +207,7 @@ public class HomeScreenController implements Initializable {
         tableView_overlaps.setVisible(true);
         listview_subsetAList.setVisible(true);
         listview_subsetBList.setVisible(true);
+        btn_compareNew.setVisible(true);
                
     }
     
@@ -170,6 +221,7 @@ public class HomeScreenController implements Initializable {
         {
             subAStrings.add(String.valueOf(subsets.get(0).normForms.get(i).getFcsId()));
         }
+        
         for(int i=0;i<subsets.get(1).normForms.size();i++)
         {
             subBStrings.add(String.valueOf(subsets.get(1).normForms.get(i).getFcsId()));
@@ -210,16 +262,9 @@ public class HomeScreenController implements Initializable {
         int subASize = subsets.get(0).normForms.size();
         int subBSize = subsets.get(1).normForms.size();
         ArrayList<Comparison> comparisonResults = logic.results;
-       // ArrayList<String> subAStrings = new ArrayList<String>();
-        //ArrayList<String> subBStrings = new ArrayList<String>();
-        //ArrayList<Expression> subA = logic.subsets.get(0).normForms;
-        //ArrayList<Expression> subB = logic.subsets.get(1).normForms;
+
         ObservableList<TableData> results = FXCollections.observableArrayList();
-//        for(int i=0;i<subBSize;i++) //To make sure that you get the same amount of As as Bs
-//        {
-//            subAStrings.add(String.valueOf(subsets.get(subASelection).normForms.get(i).getFcsId()));
-//        }
-        
+
         int intervalSize = subBSize; //The amount of comparison results we have to take out is equal to the size of B
         int startPoint = subASelection*intervalSize; //The starting point where we begin to take comparisons, are
         
@@ -230,11 +275,13 @@ public class HomeScreenController implements Initializable {
         
         for(int i=startPoint;i<(startPoint+subBSize);i++)
         {
-            TableData t = new TableData(String.valueOf(comparisonResults.get(i).getExpA().getFcsId()),String.valueOf(comparisonResults.get(i).getExpB().getFcsId()),String.valueOf(comparisonResults.get(i).getResultQualifier()));
+            TableData t = new TableData(String.valueOf(comparisonResults.get(i).getExpA().getFcsId()),String.valueOf(comparisonResults.get(i).getExpB().getFcsId()),comparisonResults.get(i).getResultQualifier());
             results.add(t);
         }
          
         tableView_overlaps.setItems(results);
+        column_RQ.setSortType(TableColumn.SortType.ASCENDING);
+        tableView_overlaps.getSortOrder().add(column_RQ);
         
     }
     
@@ -246,12 +293,14 @@ public class HomeScreenController implements Initializable {
     
     ////////////////    FXML handler methods    //////////////////
     
+    
     @FXML public void handleMouseClickInSubsetAList(MouseEvent arg0) { //Event handler for click in listView A
         clearTable();
                
         int selectedItem = listview_subsetAList.getSelectionModel().getSelectedIndex();
         
         updateTableData(selectedItem);
+        
         System.out.println(selectedItem);
     }
 
@@ -387,6 +436,19 @@ public class HomeScreenController implements Initializable {
                 }
             }    
         }
+    }
+    
+    
+    @FXML
+    void compareNewBtnClick(ActionEvent event) {
+        visibilityBeforeComparison();
+        logic.subsets.clear(); //Clear the buffers in the logic class
+        logic.results.clear();
+        label_filenameA.setText("");
+        label_filenameB.setText("");
+        ObservableList<TableData> results = FXCollections.observableArrayList();
+        tableView_overlaps.setItems(results); //Empty list
+
     }
     
     @FXML
