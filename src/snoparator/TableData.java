@@ -57,15 +57,15 @@ public class TableData {
         
         if (rqVal == 1)
         {
-            this.match = "Full Match";
+            this.match = "Full Overlap";
         }
         if (rqVal > 1 && rqVal < 18)
         {
-            this.match = "Partial Match";
+            this.match = "Partial Overlap";
         }
         if (rqVal == 18)
         {
-            this.match = "No Match";
+            this.match = "No Overlap";
         }
         
     }
